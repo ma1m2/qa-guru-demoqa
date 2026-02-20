@@ -8,6 +8,8 @@ repositories {
 
 dependencies {
     testImplementation (
+            //'io.github.bonigarcia:webdrivermanager:5.9.2',
+            //"org.seleniumhq.selenium:selenium-java:4.40.0",
             "com.codeborne:selenide:7.14.0",
             "org.junit.jupiter:junit-jupiter:5.14.2")
 }
