@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
+import static qa.msl.testdata.TestData.*;
 
 public class FillFormTest {
 
@@ -18,24 +19,26 @@ public class FillFormTest {
     Configuration.browserSize = "1920x1080";
     Configuration.pageLoadStrategy = "eager";
     Configuration.browser = "chrome";
+    Configuration.baseUrl = "https://demoqa.com";
   }
 
-  //@Test
+  @Test
   public void demoqaFillForm() {
-    open("https://demoqa.com/");//automation-practice-form
+    open("/");//automation-practice-form
     $$(".card-body").findBy(text("Forms")).click();
     $$(".router-link").findBy(text("Practice Form")).click();
-    $("#firstName").setValue("Sveta");
-    $("#lastName").setValue("Chess");
-    $("#userEmail").setValue("sveta@gmail.com");
+
+    $("#firstName").setValue(firstName);
+    $("#lastName").setValue(lastName);
+    $("#userEmail").setValue(userEmail);
     $("#gender-radio-2").click();
-    $("#userNumber").setValue("9057903858");
+    $("#userNumber").setValue(phoneNumber);
     //Calendar
     $("#dateOfBirthInput").scrollTo().click();
     $(".react-datepicker__year-select").scrollTo().click();
     $("select.react-datepicker__year-select option[value='1964']").click();
     $(".react-datepicker__month-select").click(); // Открыть выпадающий список
-    $(".react-datepicker__month-select option[value='6']").click(); //.selectOption("July") Выбрать по тексту
+    $(".react-datepicker__month-select option[value='6']").click();
     $$("[role=gridcell]").findBy(text("26")).shouldBe(visible).click();
 
     $("#subjectsInput").setValue("Chemistry").pressEnter();
