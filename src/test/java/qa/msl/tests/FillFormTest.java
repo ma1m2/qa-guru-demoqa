@@ -8,20 +8,53 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-//import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class FillFormTest {
 
   @BeforeAll
   static void setup() {
-    //WebDriverManager.chromedriver().driverVersion("145.0.7632.77").setup();
     Configuration.browserSize = "1920x1080";
     Configuration.pageLoadStrategy = "eager";
     Configuration.browser = "chrome";
   }
 
   @Test
+  public void demoqaFillForm() {
+    open("https://demoqa.com/");//automation-practice-form
+    $$(".card-body").findBy(text("Forms")).click();
+    $$(".router-link").findBy(text("Practice Form")).click();
+    $("#firstName").setValue("Sveta");
+    $("#lastName").setValue("Chess");
+    $("#userEmail").setValue("sveta@gmail.com");
+    $("#gender-radio-2").click();
+    $("#userNumber").setValue("9057903858");
+    //Calendar
+    $("#dateOfBirthInput").scrollTo().click();
+    $(".react-datepicker__year-select").scrollTo().click();
+    $("select.react-datepicker__year-select option[value='1964']").click();
+    $(".react-datepicker__month-select").click(); // Открыть выпадающий список
+    $(".react-datepicker__month-select option[value='6']").click(); //.selectOption("July") Выбрать по тексту
+    $$("[role=gridcell]").findBy(text("26")).shouldBe(visible).click();
+
+    $("#subjectsInput").setValue("Chemistry").pressEnter();
+    $("#hobbies-checkbox-2").click();
+    $("#uploadPicture").uploadFromClasspath("img/anna.png");
+    $("#currentAddress").setValue("ljlkjlkjlkjlkj").pressEnter();
+
+    $("#state").click();
+    $(byText("NCR")).click();
+    $("#city").click();
+    $(byText("Noida")).shouldBe(visible).click();
+    $("#submit").scrollTo().click();
+
+    $("body.modal-open")
+            .$("#example-modal-sizes-title-lg").shouldBe(text("Thanks for submitting the form"));
+    $("#closeLargeModal").click();
+  }
+
+ /* @Test
   void testFillForm() throws InterruptedException {
     open("https://app.qa.guru/automation-practice-form/");
     $("[data-testid=ClearIcon]").shouldBe(visible).click();
@@ -32,7 +65,7 @@ public class FillFormTest {
     //Language
     $("input[data-testid=language]").parent().click();
     $("[data-value='English']").click();
-/*    //Календарь
+*//*    //Календарь
     //$("input[data-testid=dateOfBirth]").click();
     $("[data-testid='CalendarIcon']").click();
     //choose year
@@ -42,13 +75,13 @@ public class FillFormTest {
     //choose month
     $(".MuiPickersMonth-monthButton").$(byText("Jul")).click();
     //choose day  .MuiDayCalendar-weekContainer.css-mvmu1r
-    $(".MuiDayCalendar-weekContainer.css-mvmu1r").$(byText("26")).click();*/
+    $(".MuiDayCalendar-weekContainer.css-mvmu1r").$(byText("26")).click();*//*
 
     $("input[data-testid=gender][value=Female]").click();
     $("input[data-testid=hobbies][value=Sports]").click();
     $("input[data-testid=hobbies][value=Reading]").click();
     Thread.sleep(3000);
-/*    //Предметы
+*//*    //Предметы
     $("input[data-testid=subjects]").click();
     $("li").$(byText("English")).shouldBe(visible).click();
     //Штат, город
@@ -60,34 +93,7 @@ public class FillFormTest {
     $("span[data-index='0']").click();
     $("textarea[data-testid=address]").setValue("klklljlkjlj");
     $("[data-testid='UploadFileIcon']").uploadFromClasspath("");
-    $("button[type='submit']").uploadFromClasspath("");*/
-  }
+    $("button[type='submit']").uploadFromClasspath("");*//*
+  }*/
 
-  //@Test
-  //It doesn't work with VPN either.
-  public void demoqaFillForm() {
-    open("https://demoqa.com/automation-practice-form");
-    $(".card mt-4 top-card").click();
-    $(".element-list.accordion-collapse.collapse.show").click();
-    $("#firstName").setValue("Sveta");
-    $("#lastName").setValue("Chess");
-    $("#userEmail").setValue("sveta@gmail.com");
-    $("#gender-radio-2").click();
-    $("#userNumber").setValue("9057903858");
-    $("select.react-datepicker__month-select").click();
-    $("option[value=July]").click();
-    $("select.react-datepicker__year-select").click();
-    $("option[value=1964]").click();
-    $("[role=gridcell]").$(byText("26")).shouldBe(visible).click();
-    $("#subjectsInput").setValue("Chemistry").pressEnter();
-    $("#hobbies-checkbox-2").click();
-    $("#uploadPicture").uploadFromClasspath("img/anna.png");
-    $("#currentAddress").setValue("ljlkjlkjlkjlkj").pressEnter();
-    $("#state").$(byText("NCR")).shouldBe(visible).click();
-    $("#city").$(byText("Noida")).shouldBe(visible).click();
-    $("#submit").scrollTo().click();
-    $("body.modal-open").$("#example-modal-sizes-title-lg")
-            .shouldBe(text("Thanks for submitting the form"));
-    $("#closeLargeModal").click();
-  }
 }
