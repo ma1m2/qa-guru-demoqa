@@ -20,7 +20,7 @@ public class FillFormTest {
     Configuration.browser = "chrome";
   }
 
-  @Test
+  //@Test
   public void demoqaFillForm() {
     open("https://demoqa.com/");//automation-practice-form
     $$(".card-body").findBy(text("Forms")).click();
@@ -54,7 +54,7 @@ public class FillFormTest {
     $("#closeLargeModal").click();
   }
 
- /* @Test
+  /*@Test
   void testFillForm() throws InterruptedException {
     open("https://app.qa.guru/automation-practice-form/");
     $("[data-testid=ClearIcon]").shouldBe(visible).click();
@@ -65,7 +65,7 @@ public class FillFormTest {
     //Language
     $("input[data-testid=language]").parent().click();
     $("[data-value='English']").click();
-*//*    //Календарь
+    //Календарь
     //$("input[data-testid=dateOfBirth]").click();
     $("[data-testid='CalendarIcon']").click();
     //choose year
@@ -75,13 +75,13 @@ public class FillFormTest {
     //choose month
     $(".MuiPickersMonth-monthButton").$(byText("Jul")).click();
     //choose day  .MuiDayCalendar-weekContainer.css-mvmu1r
-    $(".MuiDayCalendar-weekContainer.css-mvmu1r").$(byText("26")).click();*//*
+    $(".MuiDayCalendar-weekContainer.css-mvmu1r").$(byText("26")).click();
 
     $("input[data-testid=gender][value=Female]").click();
     $("input[data-testid=hobbies][value=Sports]").click();
     $("input[data-testid=hobbies][value=Reading]").click();
     Thread.sleep(3000);
-*//*    //Предметы
+    //Предметы
     $("input[data-testid=subjects]").click();
     $("li").$(byText("English")).shouldBe(visible).click();
     //Штат, город
@@ -93,7 +93,7 @@ public class FillFormTest {
     $("span[data-index='0']").click();
     $("textarea[data-testid=address]").setValue("klklljlkjlj");
     $("[data-testid='UploadFileIcon']").uploadFromClasspath("");
-    $("button[type='submit']").uploadFromClasspath("");*//*
-  }*/
-
+    $("button[type='submit']").uploadFromClasspath("");
+  }
+*/
 }
