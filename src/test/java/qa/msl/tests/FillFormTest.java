@@ -23,6 +23,25 @@ public class FillFormTest {
   }
 
   @Test
+  public void fillRequiredFieldsDemoqa() {
+    open("/");//automation-practice-form
+    $$(".card-body").findBy(text("Forms")).click();
+    $$(".router-link").findBy(text("Practice Form")).click();
+
+    $("#firstName").setValue(firstName);
+    $("#lastName").setValue(lastName);
+    $("#userEmail").setValue(userEmail);
+    $("#gender-radio-2").click();
+    $("#userNumber").setValue(phoneNumber);
+    $("#currentAddress").setValue(currentAddress).pressEnter();
+    $("#submit").scrollTo().click();
+
+    $("body.modal-open")
+            .$("#example-modal-sizes-title-lg").shouldBe(text("Thanks for submitting the form"));
+    $("#closeLargeModal").click();
+  }
+
+  @Test
   public void demoqaFillForm() {
     open("/");//automation-practice-form
     $$(".card-body").findBy(text("Forms")).click();
@@ -44,9 +63,9 @@ public class FillFormTest {
     $("#subjectsInput").setValue("Chemistry").pressEnter();
     $("#hobbies-checkbox-2").click();
     $("#uploadPicture").uploadFromClasspath("img/anna.png");
-    $("#currentAddress").setValue("ljlkjlkjlkjlkj").pressEnter();
+    $("#currentAddress").setValue(currentAddress).pressEnter();
 
-    $("#state").click();
+    $("#state").scrollTo().click();
     $(byText("NCR")).click();
     $("#city").click();
     $(byText("Noida")).shouldBe(visible).click();
@@ -56,47 +75,4 @@ public class FillFormTest {
             .$("#example-modal-sizes-title-lg").shouldBe(text("Thanks for submitting the form"));
     $("#closeLargeModal").click();
   }
-
-  /*@Test
-  void testFillForm() throws InterruptedException {
-    open("https://app.qa.guru/automation-practice-form/");
-    $("[data-testid=ClearIcon]").shouldBe(visible).click();
-    $("input[data-testid=firstName]").setValue("Sveta");
-    $("input[data-testid=lastName]").setValue("Lvovna");
-    $("input[data-testid=email]").setValue("asd@gmail.com");
-    $("input[data-testid=phone]").setValue("456456456");
-    //Language
-    $("input[data-testid=language]").parent().click();
-    $("[data-value='English']").click();
-    //Календарь
-    //$("input[data-testid=dateOfBirth]").click();
-    $("[data-testid='CalendarIcon']").click();
-    //choose year
-    $(".MuiPickersFadeTransitionGroup-root.css-1bx5ylf").click();
-    $(".MuiPickersYear-root.css-j9zntq").$(byText("1964"))
-            .scrollTo().shouldBe(visible).click();;
-    //choose month
-    $(".MuiPickersMonth-monthButton").$(byText("Jul")).click();
-    //choose day  .MuiDayCalendar-weekContainer.css-mvmu1r
-    $(".MuiDayCalendar-weekContainer.css-mvmu1r").$(byText("26")).click();
-
-    $("input[data-testid=gender][value=Female]").click();
-    $("input[data-testid=hobbies][value=Sports]").click();
-    $("input[data-testid=hobbies][value=Reading]").click();
-    Thread.sleep(3000);
-    //Предметы
-    $("input[data-testid=subjects]").click();
-    $("li").$(byText("English")).shouldBe(visible).click();
-    //Штат, город
-    $("input[data-testid=stateCity]").click();
-    $("li").$(byText("New York")).shouldBe(visible).click();
-    $("#city-select").click();
-    $("option").$(byText("New York")).shouldBe(visible).click();
-    //Slider
-    $("span[data-index='0']").click();
-    $("textarea[data-testid=address]").setValue("klklljlkjlj");
-    $("[data-testid='UploadFileIcon']").uploadFromClasspath("");
-    $("button[type='submit']").uploadFromClasspath("");
-  }
-*/
 }

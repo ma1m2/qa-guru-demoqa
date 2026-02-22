@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -36,7 +35,7 @@ public class TextBoxTest {
   }
 
   @Test
-  public void testTextBox() {
+  public void fillFormTest() {
     open("/");//test-box
     $$(".card-body").findBy(text("Forms")).click();
     $(".group-header").click();
@@ -48,6 +47,20 @@ public class TextBoxTest {
     $("#submit").scrollTo().click();
 
     $("#output #name").scrollTo().shouldHave(text("Name:" + userName));
-
   }
+
+  @Test
+  public void fillFormWithoutAddressTest() {
+    open("/");//test-box
+    $$(".card-body").findBy(text("Forms")).click();
+    $(".group-header").click();
+    $(byText("Text Box")).click();
+    $("#userName").setValue(userName);
+    $("#userEmail").setValue(email);
+    $("#submit").scrollTo().click();
+
+    $("#output #name").scrollTo().shouldHave(text("Name:" + userName));
+  }
+
+
 }
