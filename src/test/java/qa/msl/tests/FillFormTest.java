@@ -2,17 +2,14 @@ package qa.msl.tests;
 
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.testdata.TestData.currentAddress;
-import static qa.msl.testdata.TestData.firstName;
-import static qa.msl.testdata.TestData.lastName;
-import static qa.msl.testdata.TestData.phoneNumber;
-import static qa.msl.testdata.TestData.userEmail;
+import static qa.msl.testdata.TestData.*;
 
 public class FillFormTest extends BaseTest{
 
@@ -47,12 +44,10 @@ public class FillFormTest extends BaseTest{
     $("#gender-radio-2").click();
     $("#userNumber").setValue(phoneNumber);
     //Calendar
-    $("#dateOfBirthInput").scrollTo().click();
-    $(".react-datepicker__year-select").scrollTo().click();
-    $("select.react-datepicker__year-select option[value='1964']").click();
-    $(".react-datepicker__month-select").click(); // Открыть выпадающий список
-    $(".react-datepicker__month-select option[value='6']").click();
-    $$("[role=gridcell]").findBy(text("26")).shouldBe(visible).click();
+    $("#dateOfBirthInput").click();
+    $(".react-datepicker__year-select").selectOption("1964");
+    $(".react-datepicker__month-select").selectOption("July");
+    $(".react-datepicker__day--026:not(.react-datepicker__day--outside-month)").click();
 
     $("#subjectsInput").setValue("Chemistry").pressEnter();
     $("#hobbies-checkbox-2").click();
@@ -65,8 +60,10 @@ public class FillFormTest extends BaseTest{
     $(byText("Noida")).shouldBe(visible).click();
     $("#submit").scrollTo().click();
 
-    $("body.modal-open")
-            .$("#example-modal-sizes-title-lg").shouldBe(text("Thanks for submitting the form"));
+    $(".modal-open").should(appear);
+    $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+    $(".table-responsive").shouldHave(text(firstName), text(lastName),
+            text(userEmail), text(phoneNumber));
     $("#closeLargeModal").click();
   }
 }
