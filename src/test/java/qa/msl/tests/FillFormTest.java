@@ -1,7 +1,5 @@
 package qa.msl.tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -10,17 +8,13 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.testdata.TestData.*;
+import static qa.msl.testdata.TestData.currentAddress;
+import static qa.msl.testdata.TestData.firstName;
+import static qa.msl.testdata.TestData.lastName;
+import static qa.msl.testdata.TestData.phoneNumber;
+import static qa.msl.testdata.TestData.userEmail;
 
-public class FillFormTest {
-
-  @BeforeAll
-  static void setup() {
-    Configuration.browserSize = "1920x1080";
-    Configuration.pageLoadStrategy = "eager";
-    Configuration.browser = "chrome";
-    Configuration.baseUrl = "https://demoqa.com";
-  }
+public class FillFormTest extends BaseTest{
 
   @Test
   public void fillRequiredFieldsDemoqa() {

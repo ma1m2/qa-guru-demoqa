@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class TextBoxTest {
+public class TextBoxTest extends BaseTest{
 
   String userName;
   String email;
@@ -19,19 +19,11 @@ public class TextBoxTest {
   String permanentAddress;
 
   @BeforeEach
-  public void setUp() {
+  public void before() {
     userName = "Anna Moris";
     email = "anna@gmail.com";
     currentAddress = "current address";
     permanentAddress = "permanent address";
-  }
-
-  @BeforeAll
-  static void setup() {
-    Configuration.browserSize = "1920x1080";
-    Configuration.pageLoadStrategy = "eager";
-    Configuration.browser = "chrome";
-    Configuration.baseUrl = "https://demoqa.com";
   }
 
   @Test
