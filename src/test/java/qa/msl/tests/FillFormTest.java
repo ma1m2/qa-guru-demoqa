@@ -4,12 +4,23 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.testdata.TestData.*;
+import static qa.msl.testdata.TestData.city;
+import static qa.msl.testdata.TestData.currentAddress;
+import static qa.msl.testdata.TestData.day;
+import static qa.msl.testdata.TestData.firstName;
+import static qa.msl.testdata.TestData.gender;
+import static qa.msl.testdata.TestData.hobbie;
+import static qa.msl.testdata.TestData.lastName;
+import static qa.msl.testdata.TestData.month;
+import static qa.msl.testdata.TestData.phoneNumber;
+import static qa.msl.testdata.TestData.state;
+import static qa.msl.testdata.TestData.subject;
+import static qa.msl.testdata.TestData.userEmail;
+import static qa.msl.testdata.TestData.year;
 
 public class FillFormTest extends BaseTest{
 
@@ -18,11 +29,12 @@ public class FillFormTest extends BaseTest{
     open("/");//automation-practice-form
     $$(".card-body").findBy(text("Forms")).click();
     $$(".router-link").findBy(text("Practice Form")).click();
+    $(".text-center").shouldHave(text("Practice Form"));
 
     $("#firstName").setValue(firstName);
     $("#lastName").setValue(lastName);
     $("#userEmail").setValue(userEmail);
-    $("#gender-radio-2").click();
+    $("#gender-radio-2").click();//Лучше сделать поиск по тексту. А если 5 локалей, то не лучше.
     $("#userNumber").setValue(phoneNumber);
     $("#currentAddress").setValue(currentAddress).pressEnter();
     $("#submit").scrollTo().click();
@@ -37,33 +49,44 @@ public class FillFormTest extends BaseTest{
     open("/");//automation-practice-form
     $$(".card-body").findBy(text("Forms")).click();
     $$(".router-link").findBy(text("Practice Form")).click();
+    $(".text-center").shouldHave(text("Practice Form"));
 
     $("#firstName").setValue(firstName);
     $("#lastName").setValue(lastName);
     $("#userEmail").setValue(userEmail);
-    $("#gender-radio-2").click();
+    $("#genterWrapper").$(byText(gender)).click();
     $("#userNumber").setValue(phoneNumber);
     //Calendar
     $("#dateOfBirthInput").click();
-    $(".react-datepicker__year-select").selectOption("1964");
-    $(".react-datepicker__month-select").selectOption("July");
-    $(".react-datepicker__day--026:not(.react-datepicker__day--outside-month)").click();
+    $(".react-datepicker__month-select").selectOption(month);//selectOptionByValue("6");$(byText("July")).click();
+    $(".react-datepicker__year-select").selectOption(year);
+    $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
 
-    $("#subjectsInput").setValue("Chemistry").pressEnter();
-    $("#hobbies-checkbox-2").click();
-    $("#uploadPicture").uploadFromClasspath("img/anna.png");
+    $("#subjectsInput").setValue(subject).pressEnter();
+    $("#hobbiesWrapper").$(byText(hobbie)).click();
+    $("#uploadPicture").uploadFromClasspath("img/anna.png");//type="file"
+    //$("#uploadPicture").uploadFile(new File("src/test/resources/img/anna.png"));
     $("#currentAddress").setValue(currentAddress).pressEnter();
 
     $("#state").scrollTo().click();
-    $(byText("NCR")).click();
+    $("#stateCity-wrapper").$(byText(state)).click();
     $("#city").click();
-    $(byText("Noida")).shouldBe(visible).click();
+    $("#stateCity-wrapper").$(byText(city)).click();
     $("#submit").scrollTo().click();
 
     $(".modal-open").should(appear);
     $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-    $(".table-responsive").shouldHave(text(firstName), text(lastName),
-            text(userEmail), text(phoneNumber));
+    $(".table-responsive").shouldHave(
+            text(firstName + " " + lastName),
+            text(userEmail),
+            text(gender),
+            text(phoneNumber),
+            text(day+" "+month+","+year),
+            text(subject),
+            text("Reading"),
+            text(currentAddress),
+            text("anna.png"),
+            text(state+" "+city));
     $("#closeLargeModal").click();
   }
 }
