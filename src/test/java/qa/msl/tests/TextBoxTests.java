@@ -1,16 +1,40 @@
 package qa.msl.tests;
 
+import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
-import qa.msl.pages.TextBoxPage;
+
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.testdata.TestData.*;
+import static qa.msl.testdata.TestData.currentAddress;
+import static qa.msl.testdata.TestData.permanentAddress;
+import static qa.msl.testdata.TestData.userEmail;
+import static qa.msl.testdata.TestData.userName;
 
 public class TextBoxTests extends BaseTest{
+
+  @Test
+  public void fillFormTestWith_faker() {
+    String userName = fakerRu.name().name();
+    String userEmail = fakerEn.internet().emailAddress();
+    String currentAddress = fakerRu.address().fullAddress();
+    String permanentAddress = fakerRu.address().fullAddress();
+
+    textBoxPage.openPage()
+            .typeUserName(userName)
+            .typeUserEmail(userEmail)
+            .typeCurrentAddress(currentAddress)
+            .typePermanentAddress(permanentAddress)
+            .submitForm()
+            .checkOutput("name", userName)
+            .checkOutput("email", userEmail)
+            .checkOutput("currentAddress", currentAddress)
+            .checkOutput("permanentAddress", permanentAddress);
+  }
 
   @Test
   public void fillFormTest_chaining() {//fluent
