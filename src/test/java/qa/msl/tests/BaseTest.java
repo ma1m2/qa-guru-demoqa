@@ -3,10 +3,15 @@ package qa.msl.tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import qa.msl.pages.RegistrationPage;
+import qa.msl.pages.TextBoxPage;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BaseTest {
+
+  TextBoxPage textBoxPage = new TextBoxPage();
+  RegistrationPage registrationPage = new RegistrationPage();
 
   @BeforeAll
   static void setUp() {
