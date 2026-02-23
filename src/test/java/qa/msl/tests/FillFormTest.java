@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static qa.msl.testdata.TestData.city;
 import static qa.msl.testdata.TestData.currentAddress;
 import static qa.msl.testdata.TestData.day;
+import static qa.msl.testdata.TestData.fileName;
 import static qa.msl.testdata.TestData.firstName;
 import static qa.msl.testdata.TestData.gender;
 import static qa.msl.testdata.TestData.hobbie;
@@ -64,7 +65,7 @@ public class FillFormTest extends BaseTest{
 
     $("#subjectsInput").setValue(subject).pressEnter();
     $("#hobbiesWrapper").$(byText(hobbie)).click();
-    $("#uploadPicture").uploadFromClasspath("img/anna.png");//type="file"
+    $("#uploadPicture").uploadFromClasspath("img/" + fileName);//type="file"
     //$("#uploadPicture").uploadFile(new File("src/test/resources/img/anna.png"));
     $("#currentAddress").setValue(currentAddress).pressEnter();
 
@@ -83,9 +84,9 @@ public class FillFormTest extends BaseTest{
             text(phoneNumber),
             text(day+" "+month+","+year),
             text(subject),
-            text("Reading"),
+            text(hobbie),
             text(currentAddress),
-            text("anna.png"),
+            text(fileName),
             text(state+" "+city));
     $("#closeLargeModal").click();
   }

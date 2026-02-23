@@ -13,6 +13,7 @@ public class TestData {
   public static String day = "26";
   public static String subject = "Chemistry";
   public static String hobbie = "Reading";
+  public static String fileName = "anna.png";
   public static String state = "NCR";
   public static String city = "Noida";
   public static String currentAddress = "current address";

@@ -8,16 +8,26 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.testdata.TestData.currentAddress;
-import static qa.msl.testdata.TestData.permanentAddress;
-import static qa.msl.testdata.TestData.userEmail;
-import static qa.msl.testdata.TestData.userName;
+import static qa.msl.testdata.TestData.*;
 
 public class TextBoxTests extends BaseTest{
 
   @Test
+  public void fillFormTest_chaining() {//fluent
+    textBoxPage.openPage()
+            .typeUserName(userName)
+            .typeUserEmail(userEmail)
+            .typeCurrentAddress(currentAddress)
+            .typePermanentAddress(permanentAddress)
+            .submitForm()
+            .checkOutput("name", userName)
+            .checkOutput("email", userEmail)
+            .checkOutput("currentAddress", currentAddress)
+            .checkOutput("permanentAddress", permanentAddress);
+  }
+
+  @Test
   public void fillFormTest() {
-    TextBoxPage textBoxPage = new TextBoxPage();
     textBoxPage.openPage();
     textBoxPage.typeUserName(userName);
     textBoxPage.typeUserEmail(userEmail);
@@ -29,21 +39,6 @@ public class TextBoxTests extends BaseTest{
     textBoxPage.checkOutput("email", userEmail);
     textBoxPage.checkOutput("currentAddress", currentAddress);
     textBoxPage.checkOutput("permanentAddress", permanentAddress);
-  }
-
-  @Test
-  public void fillFormTest_chaining() {//fluent
-    TextBoxPage textBoxPage = new TextBoxPage();
-    textBoxPage.openPage()
-            .typeUserName(userName)
-            .typeUserEmail(userEmail)
-            .typeCurrentAddress(currentAddress)
-            .typePermanentAddress(permanentAddress)
-            .submitForm()
-            .checkOutput("name", userName)
-            .checkOutput("email", userEmail)
-            .checkOutput("currentAddress", currentAddress)
-            .checkOutput("permanentAddress", permanentAddress);
   }
 
   @Test
