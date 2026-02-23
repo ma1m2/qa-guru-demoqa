@@ -77,17 +77,16 @@ public class FillFormTest extends BaseTest{
 
     $(".modal-open").should(appear);
     $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-    $(".table-responsive").shouldHave(
-            text(firstName + " " + lastName),
-            text(userEmail),
-            text(gender),
-            text(phoneNumber),
-            text(day+" "+month+","+year),
-            text(subject),
-            text(hobbie),
-            text(currentAddress),
-            text(fileName),
-            text(state+" "+city));
+    $(".table-responsive").shouldHave(text(firstName + " " + lastName));
+    $(".table-responsive").shouldHave(text(userEmail));
+    $(".table-responsive").shouldHave(text(gender));
+    $(".table-responsive").shouldHave(text(phoneNumber));
+    $(".table-responsive").shouldHave(text(day+" "+month+","+year));
+    $(".table-responsive").shouldHave(text(subject));
+    $(".table-responsive").shouldHave(text(hobbie));
+    $(".table-responsive").shouldHave(text(currentAddress));
+    $(".table-responsive").shouldHave(text(fileName));
+    $(".table-responsive").shouldHave(text(state+" "+city));
     $("#closeLargeModal").click();
   }
 }
