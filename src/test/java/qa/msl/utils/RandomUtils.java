@@ -1,6 +1,7 @@
 package qa.msl.utils;
 
 import java.util.concurrent.ThreadLocalRandom;
+import qa.msl.enums.*;
 
 import static java.lang.String.format;
 
@@ -64,12 +65,30 @@ public class RandomUtils {
   }
 
   public static String getRandomGender() {
-    String[] genders = {"Male", "Female", "Other"};
-   return getRandomItemFromStringArray(genders);
+    Gender[] genders = Gender.values();
+    Gender randomGender = getRandomItemFromArray(genders);
+    return randomGender.getDisplayName();
   }
 
-  public static String getRandomItemFromStringArray(String[] stringArray) {
-    int randomIndex = getRandomInt(0, stringArray.length - 1);
-    return stringArray[randomIndex];
+  public static String getRandomHobby() {
+    Hobby[] hobbies = Hobby.values();
+    Hobby randomHobby = getRandomItemFromArray(hobbies);
+    return randomHobby.getDisplayName();
   }
+
+  public static String[] getRandomStateAndCity() {
+    StateAndCity[] states = StateAndCity.values();
+    StateAndCity randomState = getRandomItemFromArray(states);
+
+    String[] results = new String[2];
+    results[0] = randomState.getState();
+    results[1] = randomState.getRandomCity();
+    return results;
+  }
+
+  private static <T> T getRandomItemFromArray(T[] array) {
+    int randomIndex = getRandomInt(0, array.length - 1);
+    return array[randomIndex];
+  }
+
 }
