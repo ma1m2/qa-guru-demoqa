@@ -1,10 +1,58 @@
 package qa.msl.tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static qa.msl.testdata.TestData.*;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
+
+import static qa.msl.utils.RandomUtils.*;
 
 public class RegistrationTests extends BaseTest{
+
+  LocalDate randomDate;
+  String[] stateAndCity;
+
+  String firstName;
+  String lastName;
+  String userEmail;
+  String gender;
+  String phoneNumber;
+  String year;
+  String month;
+  String day;
+  String subject;
+  String hobbie;
+  String fileName;
+  String state;
+  String city;
+  String currentAddress;
+
+  @BeforeEach
+  public void prepareData() {
+    randomDate = fakerEn.date()
+            .birthday()
+            .toInstant()
+            .atZone(java.time.ZoneId.systemDefault())
+            .toLocalDate();
+    stateAndCity = getRandomStateAndCity();
+
+    firstName = fakerEn.name().firstName();
+    lastName = fakerEn.name().lastName();
+    userEmail = fakerEn.internet().emailAddress();
+    gender = getRandomGender();
+    phoneNumber = getRandomNumber(10);
+    year = String.valueOf(randomDate.getYear());
+    month = randomDate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+    day = String.format("%02d", randomDate.getDayOfMonth());
+    subject = getRandomSubject();
+    hobbie = getRandomHobby();
+    fileName = "anna.png";
+    state = stateAndCity[0];
+    city = stateAndCity[1];
+    currentAddress = fakerEn.address().fullAddress();
+  }
 
   @Test
   void succesfulRegistrationTest() {

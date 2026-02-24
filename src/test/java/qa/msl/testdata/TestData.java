@@ -1,5 +1,6 @@
 package qa.msl.testdata;
 
+
 public class TestData {
 
   public static String firstName = "Sveta";
