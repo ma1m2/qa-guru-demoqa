@@ -100,15 +100,4 @@ public class RandomUtils {
     return array[randomIndex];
   }
 
-  public static void main(String[] args) {
-    System.out.println(getRandomSubject());
-  }
-
-  Faker faker = new Faker();
-  java.time.LocalDate randomDate = faker.date()
-          .birthday()
-          .toInstant()
-          .atZone(java.time.ZoneId.systemDefault())
-          .toLocalDate();
-
 }
