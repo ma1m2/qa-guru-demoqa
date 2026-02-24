@@ -1,6 +1,9 @@
 package qa.msl.utils;
 
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
+import com.github.javafaker.Faker;
 import qa.msl.enums.*;
 
 import static java.lang.String.format;
@@ -76,6 +79,12 @@ public class RandomUtils {
     return randomHobby.getDisplayName();
   }
 
+  public static String getRandomSubject() {
+    Subject[] hobbies = Subject.values();
+    Subject randomSubject = getRandomItemFromArray(hobbies);
+    return randomSubject.getDisplayName();
+  }
+
   public static String[] getRandomStateAndCity() {
     StateAndCity[] states = StateAndCity.values();
     StateAndCity randomState = getRandomItemFromArray(states);
@@ -90,5 +99,16 @@ public class RandomUtils {
     int randomIndex = getRandomInt(0, array.length - 1);
     return array[randomIndex];
   }
+
+  public static void main(String[] args) {
+    System.out.println(getRandomSubject());
+  }
+
+  Faker faker = new Faker();
+  java.time.LocalDate randomDate = faker.date()
+          .birthday()
+          .toInstant()
+          .atZone(java.time.ZoneId.systemDefault())
+          .toLocalDate();
 
 }

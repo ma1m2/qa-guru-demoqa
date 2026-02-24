@@ -1,6 +1,7 @@
 package qa.msl.enums;
 
-import net.datafaker.Faker;
+//import net.datafaker.Faker;
+import com.github.javafaker.Faker;
 
 public enum StateAndCity {
   NCR("NCR", "Delhi", "Gurgaon", "Noida"),

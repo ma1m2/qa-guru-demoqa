@@ -1,7 +1,8 @@
 package qa.msl.tests;
 
 import com.codeborne.selenide.Configuration;
-import net.datafaker.Faker;
+//import net.datafaker.Faker;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import qa.msl.pages.RegistrationPage;
