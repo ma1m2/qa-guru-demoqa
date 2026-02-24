@@ -15,6 +15,7 @@ public class BaseTest {
 
   TextBoxPage textBoxPage = new TextBoxPage();
   RegistrationPage registrationPage = new RegistrationPage();
+
   Locale localeEn = new Locale.Builder()
           .setLanguage("en")
           .setRegion("US")   // регион (опционально)

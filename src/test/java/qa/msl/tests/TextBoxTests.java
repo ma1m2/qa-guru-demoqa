@@ -1,29 +1,51 @@
 package qa.msl.tests;
 
-import net.datafaker.Faker;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.testdata.TestData.currentAddress;
-import static qa.msl.testdata.TestData.permanentAddress;
-import static qa.msl.testdata.TestData.userEmail;
-import static qa.msl.testdata.TestData.userName;
+import static qa.msl.utils.RandomUtils.getRandomEmail;
+import static qa.msl.utils.RandomUtils.getRandomString;
 
 public class TextBoxTests extends BaseTest{
+  String userName;
+  String userEmail;
+  String currentAddress;
+  String permanentAddress;
+
+  @BeforeEach
+  public void prepareData() {
+    userName = fakerRu.name().name();
+    userEmail = fakerEn.internet().emailAddress();
+    currentAddress = fakerRu.address().fullAddress();
+    permanentAddress = fakerRu.address().fullAddress();
+  }
+
+  @Test
+  public void fillFormTestWith_utils() {
+    String userName = getRandomString(10);
+    String userEmail = getRandomEmail();
+    String currentAddress = getRandomString(25);
+    String permanentAddress = getRandomString(25);
+
+    textBoxPage.openPage()
+            .typeUserName(userName)
+            .typeUserEmail(userEmail)
+            .typeCurrentAddress(currentAddress)
+            .typePermanentAddress(permanentAddress)
+            .submitForm()
+            .checkOutput("name", userName)
+            .checkOutput("email", userEmail)
+            .checkOutput("currentAddress", currentAddress)
+            .checkOutput("permanentAddress", permanentAddress);
+  }
 
   @Test
   public void fillFormTestWith_faker() {
-    String userName = fakerRu.name().name();
-    String userEmail = fakerEn.internet().emailAddress();
-    String currentAddress = fakerRu.address().fullAddress();
-    String permanentAddress = fakerRu.address().fullAddress();
-
     textBoxPage.openPage()
             .typeUserName(userName)
             .typeUserEmail(userEmail)
