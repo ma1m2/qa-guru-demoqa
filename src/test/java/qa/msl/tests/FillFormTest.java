@@ -35,7 +35,7 @@ public class FillFormTest extends BaseTest{
     $("#firstName").setValue(firstName);
     $("#lastName").setValue(lastName);
     $("#userEmail").setValue(userEmail);
-    $("#gender-radio-2").click();//Лучше сделать поиск по тексту. А если 5 локалей, то не лучше.
+    $("#genterWrapper").$(byText(gender)).click();
     $("#userNumber").setValue(phoneNumber);
     $("#currentAddress").setValue(currentAddress).pressEnter();
     $("#submit").scrollTo().click();
