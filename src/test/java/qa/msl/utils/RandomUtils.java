@@ -25,7 +25,7 @@ public class RandomUtils {
    * int randomInt = ThreadLocalRandom.current().nextInt(1, 101); // От 1 до 100
    */
   public static String getRandomString(int lengthStr) {
-    String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";//0123456789
+    String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     StringBuilder sb = new StringBuilder(lengthStr);
     for (int i = 0; i < lengthStr; i++) {
       sb.append(LETTERS.charAt((int)(Math.random() * LETTERS.length())));

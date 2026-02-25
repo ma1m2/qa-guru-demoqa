@@ -1,6 +1,5 @@
 package qa.msl.examples;
 
-//import net.datafaker.Faker;
 import com.github.javafaker.Faker;
 
 import java.util.Locale;
