@@ -1,14 +1,9 @@
 package qa.msl.tests;
 
 import com.codeborne.selenide.Configuration;
-import com.github.javafaker.Faker;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import qa.msl.pages.RegistrationPage;
-import qa.msl.pages.TextBoxPage;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
