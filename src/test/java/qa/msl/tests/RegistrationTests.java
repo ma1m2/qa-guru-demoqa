@@ -7,7 +7,12 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-import static qa.msl.utils.RandomUtils.*;
+import static qa.msl.utils.RandomUtils.fakerEn;
+import static qa.msl.utils.RandomUtils.fakerRu;
+import static qa.msl.utils.RandomUtils.getRandomGender;
+import static qa.msl.utils.RandomUtils.getRandomHobby;
+import static qa.msl.utils.RandomUtils.getRandomStateAndCity;
+import static qa.msl.utils.RandomUtils.getRandomSubject;
 
 public class RegistrationTests extends BaseTest{
 
@@ -38,11 +43,11 @@ public class RegistrationTests extends BaseTest{
             .toLocalDate();
     stateAndCity = getRandomStateAndCity();
 
-    firstName = fakerEn.name().firstName();
-    lastName = fakerEn.name().lastName();
+    firstName = fakerRu.name().firstName();
+    lastName = fakerRu.name().lastName();
     userEmail = fakerEn.internet().emailAddress();
     gender = getRandomGender();
-    phoneNumber = getRandomNumber(10);
+    phoneNumber = fakerEn.phoneNumber().subscriberNumber(10);
     year = String.valueOf(randomDate.getYear());
     month = randomDate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
     day = String.format("%02d", randomDate.getDayOfMonth());

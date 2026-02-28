@@ -8,7 +8,6 @@ repositories {
 
 dependencies {
     testImplementation (
-            //"net.datafaker:datafaker:2.5.4",
             "com.github.javafaker:javafaker:1.0.2",
             "com.codeborne:selenide:7.14.0",
             "org.junit.jupiter:junit-jupiter:5.14.2")
