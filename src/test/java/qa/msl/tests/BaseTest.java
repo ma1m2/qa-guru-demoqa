@@ -16,16 +16,6 @@ public class BaseTest {
   TextBoxPage textBoxPage = new TextBoxPage();
   RegistrationPage registrationPage = new RegistrationPage();
 
-  Locale localeEn = new Locale.Builder()
-          .setLanguage("en")
-          .setRegion("US")   // регион (опционально)
-          .build();
-  Locale localeRu = new Locale.Builder()
-          .setLanguage("ru")
-          .build();
-  Faker fakerEn = new Faker(localeEn);
-  Faker fakerRu = new Faker(localeRu);
-
   @BeforeAll
   static void setUp() {
     Configuration.browserSize = "1920x1080";

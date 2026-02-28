@@ -8,8 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.utils.RandomUtils.getRandomEmail;
-import static qa.msl.utils.RandomUtils.getRandomString;
+import static qa.msl.utils.RandomUtils.*;
 
 public class TextBoxTests extends BaseTest{
   String userName;
