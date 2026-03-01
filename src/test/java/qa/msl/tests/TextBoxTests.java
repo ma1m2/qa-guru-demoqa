@@ -1,5 +1,6 @@
 package qa.msl.tests;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,10 +9,11 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static qa.msl.utils.RandomUtils.getRandomEmail;
-import static qa.msl.utils.RandomUtils.getRandomString;
+import static qa.msl.utils.RandomUtils.*;
 
 public class TextBoxTests extends BaseTest{
+
+  Faker faker = new Faker();
   String userName;
   String userEmail;
   String currentAddress;
@@ -19,10 +21,10 @@ public class TextBoxTests extends BaseTest{
 
   @BeforeEach
   public void prepareData() {
-    userName = fakerRu.name().name();
-    userEmail = fakerEn.internet().emailAddress();
-    currentAddress = fakerRu.address().fullAddress();
-    permanentAddress = fakerRu.address().fullAddress();
+    userName = faker.name().name();
+    userEmail = faker.internet().emailAddress();
+    currentAddress = faker.address().fullAddress();
+    permanentAddress = faker.address().fullAddress();
   }
 
   @Test

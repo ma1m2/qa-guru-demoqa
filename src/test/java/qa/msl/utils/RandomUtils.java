@@ -1,29 +1,31 @@
 package qa.msl.utils;
 
-import java.time.format.TextStyle;
-import java.util.Locale;
+import qa.msl.enums.Gender;
+import qa.msl.enums.Hobby;
+import qa.msl.enums.StateAndCity;
+import qa.msl.enums.Subject;
+
 import java.util.concurrent.ThreadLocalRandom;
-import com.github.javafaker.Faker;
-import qa.msl.enums.*;
 
 import static java.lang.String.format;
 
+/**
+ * Math.random() синхронизирован, то есть безопасен для многопоточного использования
+ * Math.random() в диапазоне от 0.0 (включительно) до 1.0 (не включая 1.0)
+ * chars.length() = 62
+ * Когда умножаем Math.random() на 62, получаем число в диапазоне:
+ * 0.0 ≤ Math.random() * 62 < 62.0
+ * (int)(Math.random() * 62) — отбрасывает дробную часть, оставляя только целую.
+ * Теперь диапазон: 0 ≤ (int)(Math.random() * 62) ≤ 61
+ *
+ * Вместо статического метода Math.random() юзать
+ * Random rnd = new Random();
+ * rnd.nextFloat() - результат будет тот же
+ *
+ * int randomInt = ThreadLocalRandom.current().nextInt(1, 101); // От 1 до 100
+ */
 public class RandomUtils {
-  /**
-   * Math.random() синхронизирован, то есть безопасен для многопоточного использования
-   * Math.random() в диапазоне от 0.0 (включительно) до 1.0 (не включая 1.0)
-   * chars.length() = 62
-   * Когда умножаем Math.random() на 62, получаем число в диапазоне:
-   * 0.0 ≤ Math.random() * 62 < 62.0
-   * (int)(Math.random() * 62) — отбрасывает дробную часть, оставляя только целую.
-   * Теперь диапазон: 0 ≤ (int)(Math.random() * 62) ≤ 61
-   *
-   * Вместо статического метода Math.random() юзать
-   * Random rnd = new Random();
-   * rnd.nextFloat() - результат будет тот же
-   *
-   * int randomInt = ThreadLocalRandom.current().nextInt(1, 101); // От 1 до 100
-   */
+
   public static String getRandomString(int lengthStr) {
     String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     StringBuilder sb = new StringBuilder(lengthStr);
